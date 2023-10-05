@@ -1,6 +1,8 @@
 
 import express from 'express'
 import axios from 'axios'
+import * as path from 'path'
+import { fileURLToPath } from 'url'
 
 const app = express()
 const api = 'https://restcountries.com/v3.1/name/'
@@ -23,5 +25,10 @@ app.get('/api/country/:countryName', async (req, res) => {
     }
 })
 
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+app.use(express.static(path.join(__dirname + '/public')))
 
 export default app
